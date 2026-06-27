@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>If Clauses · Student Practice · A2+ · LBEnglishCo</title>
+<style>
+  :root{
+    --bg:#0f1724; --panel:#16213a; --panel2:#1d2b4a; --ink:#eaf0fb; --muted:#9fb0cf;
+    --brand:#ff7a45; --brand2:#ffd166; --green:#3ddc97; --blue:#4cc3ff; --purple:#b388ff; --red:#ff6b81;
+    --line:#2a3a5e; --chip:#223255; --tr:#ffcf8a; --shadow:0 10px 30px rgba(0,0,0,.35); --radius:16px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;line-height:1.55;
+    background:radial-gradient(1200px 600px at 80% -10%,#1b2c52 0,transparent 60%),var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:16px 16px 90px}
+  header.hero{background:linear-gradient(135deg,#ff7a45,#ff5e8a 55%,#b388ff);border-radius:var(--radius);
+    padding:22px;box-shadow:var(--shadow);color:#1a1030}
+  .badge{display:inline-block;background:rgba(255,255,255,.8);color:#7a2e00;font-weight:800;font-size:.7rem;
+    padding:4px 10px;border-radius:999px;letter-spacing:.5px;margin-bottom:8px}
+  header.hero h1{margin:0 0 4px;font-size:1.5rem}
+  header.hero p{margin:0;font-weight:600;color:#2a1640}
+  .meta{margin-top:12px;display:flex;gap:8px;flex-wrap:wrap}
+  .meta span{background:rgba(26,16,48,.18);color:#2a1640;font-weight:700;font-size:.72rem;padding:5px 11px;border-radius:999px}
+
+  .howto{margin-top:14px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px;color:var(--muted);font-size:.9rem}
+  .howto b{color:var(--ink)}
+
+  nav{display:flex;gap:8px;overflow-x:auto;padding:12px 2px 6px;margin-top:8px}
+  nav button{flex:0 0 auto;background:var(--chip);color:var(--ink);border:1px solid var(--line);border-radius:999px;
+    padding:9px 15px;font-weight:800;font-size:.85rem;cursor:pointer;white-space:nowrap}
+  nav button.active{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#3a1500;border-color:transparent}
+
+  h2.sec{font-size:1.35rem;margin:18px 2px 4px}
+  .lead{color:var(--muted);margin:0 2px 8px}
+
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px;margin:14px 0;box-shadow:var(--shadow)}
+  .form-box{background:var(--panel2);border-left:4px solid var(--blue);border-radius:10px;padding:12px 14px;margin:6px 0 12px}
+  .form-box .f{font-size:1.05rem;font-weight:800}
+  .form-box .ex{margin-top:6px}
+  .pill{display:inline-block;background:rgba(76,195,255,.14);border:1px solid rgba(76,195,255,.4);color:var(--blue);
+    font-weight:800;border-radius:8px;padding:2px 8px;font-size:.85rem}
+  .gword{color:var(--green);font-weight:800}
+  .tr{display:block;margin-top:8px;color:var(--tr);font-style:italic}
+  .tr b{color:#ffe6c2}
+  .warn{background:rgba(255,107,129,.12);border-left:4px solid var(--red);border-radius:10px;padding:12px 14px;margin:10px 0}
+  .warn .lbl{font-weight:900;color:var(--red);letter-spacing:.5px;font-size:.8rem}
+  .warn .ok{color:var(--green);font-weight:700}
+  .warn .no{color:var(--red);font-weight:700}
+
+  table.cmp{width:100%;border-collapse:collapse;margin:8px 0;font-size:.9rem}
+  table.cmp th,table.cmp td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+  table.cmp th{background:var(--panel2);color:var(--brand2)}
+  table.cmp td:first-child{color:var(--muted);font-weight:700;white-space:nowrap}
+
+  .exrow{background:var(--chip);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin:7px 0;cursor:pointer;transition:.15s}
+  .exrow:hover{border-color:var(--blue)}
+  .exrow .en{font-weight:700}
+  .exrow .more{display:none;margin-top:7px;padding-top:7px;border-top:1px dashed var(--line);font-size:.9rem}
+  .exrow.open .more{display:block}
+  .exrow .trm{color:var(--tr);font-style:italic}
+  .exrow .note{color:var(--muted);display:block;margin-top:3px;font-size:.84rem}
+  .hint{color:var(--muted);font-size:.82rem;margin:2px 2px 8px}
+
+  .q{margin:12px 0;padding-bottom:10px;border-bottom:1px solid var(--line)}
+  .q:last-child{border-bottom:none}
+  .qline{font-size:1rem}
+  input.blank{background:var(--panel2);border:1px solid var(--line);color:var(--ink);border-radius:7px;
+    padding:4px 8px;font-size:.95rem;width:130px;margin:0 3px;font-family:inherit}
+  input.blank:focus{outline:none;border-color:var(--brand2)}
+  input.blank.right{border-color:var(--green);background:rgba(61,220,151,.15)}
+  input.blank.wrong{border-color:var(--red);background:rgba(255,107,129,.15)}
+  .cue{color:var(--muted);font-style:italic;font-size:.85rem}
+
+  .btn{border:none;border-radius:10px;padding:9px 14px;font-weight:800;font-size:.84rem;cursor:pointer;margin:4px 6px 0 0}
+  .btn-check{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#3a1500}
+  .btn-show{background:rgba(179,136,255,.16);color:var(--purple);border:1px solid rgba(179,136,255,.45)}
+  .btn-reveal{background:var(--panel2);color:var(--blue);border:1px solid var(--line)}
+  .score{font-weight:800;margin-left:6px}
+  .score.good{color:var(--green)} .score.bad{color:var(--brand2)}
+
+  .reveal{display:none;margin-top:8px;padding:10px 12px;background:var(--panel2);border-left:3px solid var(--green);border-radius:8px;font-size:.95rem}
+  .reveal.show{display:block}
+  .reveal .a{color:var(--green);font-weight:800}
+  .reveal .trm{color:var(--tr);font-style:italic;display:block;margin-top:4px}
+
+  .spk{background:var(--chip);border:1px solid var(--line);border-radius:12px;padding:13px 14px;margin:10px 0}
+  .spk .topic{font-size:.72rem;font-weight:800;color:var(--brand2);letter-spacing:1px;text-transform:uppercase}
+  .spk h4{margin:5px 0 8px;font-size:1.05rem}
+  .spk .starters{color:var(--muted);font-size:.85rem;margin-top:8px}
+  .spk .starters i{color:var(--ink);font-style:normal;font-weight:600}
+
+  table.mis{width:100%;border-collapse:collapse;font-size:.9rem;margin-top:6px}
+  table.mis th,table.mis td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+  table.mis th{background:var(--panel2);color:var(--brand2)}
+  .wrongtxt{color:var(--red)} .righttxt{color:var(--green)}
+
+  footer{margin-top:30px;text-align:center;color:var(--muted);font-size:.8rem}
+  .secblock{display:none}
+  .secblock.active{display:block}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <span class="badge">LBEnglishCo · STUDENT PRACTICE</span>
+    <h1>If Clauses — Type 0, 1 & 2 🎯</h1>
+    <p>Learn it. Try it. Check it yourself.</p>
+    <div class="meta"><span>📘 A2+</span><span>🇹🇷 Türkçe ipuçları</span><span>✅ Self-check answers</span><span>🗣️ Speaking too</span></div>
+  </header>
+
+  <div class="howto">
+    <b>How to use this:</b> Read each grammar box, then tap the example sentences to see the Turkish meaning. In the practice, type your answer and press <b>Check</b> — green = correct, red = try again. Stuck? Press <b>Show answers</b>. For speaking, answer out loud first, <i>then</i> tap <b>Show a model answer</b>.
+  </div>
+
+  <nav id="nav"></nav>
+
+  <div id="app"></div>
+
+  <footer>LBEnglishCo · Denizli — practice a little every day. 💪</footer>
+</div>
+
+<script>
+/* ===================== DATA ===================== */
+
+const EX0 = [
+  ["If you heat ice, it melts.","Buzu ısıtırsan, erir.","if = when; both verbs present simple."],
+  ["If you mix blue and yellow, you get green.","Maviyle sarıyı karıştırırsan, yeşil elde edersin.","Result is always true."],
+  ["Water boils if you heat it to 100 degrees.","Suyu 100 dereceye ısıtırsan kaynar.","if-clause second → no comma."],
+  ["If I drink coffee at night, I can’t sleep.","Geceleri kahve içersem, uyuyamam.","Personal habit → still Type 0."],
+  ["Plants die if they don’t get water.","Bitkiler su almazsa ölür.","Negative if-clause: don’t get."],
+  ["If you don’t eat, you feel hungry.","Yemek yemezsen, acıkırsın.","don’t + base verb."],
+  ["If the sun goes down, it gets dark.","Güneş batarsa, hava kararır.","3rd person -s: goes, gets."],
+  ["My phone turns off if the battery dies.","Pil biterse telefonum kapanır.","-s on turns, dies."],
+  ["If you touch fire, it burns you.","Ateşe dokunursan, seni yakar.","General truth."],
+  ["If people don’t sleep, they get tired.","İnsanlar uyumazsa yorulur.","Plural subject → no -s."],
+  ["If you press this button, the machine starts.","Bu düğmeye basarsan, makine çalışır.","Rule / instruction."],
+  ["If you study every day, you remember more.","Her gün çalışırsan, daha çok hatırlarsın.","Habit / general truth."],
+  ["If babies are hungry, they cry.","Bebekler açsa, ağlarlar.","be (are) in if-clause."],
+  ["If you don’t water plants, they die.","Bitkileri sulamazsan, ölürler.","Negative condition."],
+  ["If you boil eggs for ten minutes, they become hard.","Yumurtaları on dakika kaynatırsan, sertleşir.","Cooking fact."],
+  ["Ice cream melts if you leave it in the sun.","Dondurmayı güneşte bırakırsan erir.","Result clause first."]
+];
+
+const EX1 = [
+  ["If it rains tomorrow, we will stay at home.","Yarın yağmur yağarsa, evde kalacağız.","Future, possible. if + present, will + base."],
+  ["If you study hard, you will pass the exam.","Çok çalışırsan, sınavı geçeceksin.","Likely real result."],
+  ["If I have time, I will call you.","Vaktim olursa, seni arayacağım.","have (not ‘will have’) after if."],
+  ["If you don’t hurry, you will miss the bus.","Acele etmezsen, otobüsü kaçıracaksın.","Negative condition + warning."],
+  ["She will be happy if you help her.","Ona yardım edersen, mutlu olacak.","Result first → no comma."],
+  ["If we don’t leave now, we will be late.","Şimdi çıkmazsak, geç kalacağız.","won’t / will be."],
+  ["If the weather is nice, we will go to the beach.","Hava güzel olursa, plaja gideceğiz.","is (not will be) after if."],
+  ["I will buy that phone if it is cheap.","O telefon ucuz olursa, onu alacağım.","Open condition."],
+  ["If you eat too much, you will feel sick.","Çok yersen, kendini kötü hissedeceksin.","Cause → likely effect."],
+  ["If he doesn’t call me, I will be angry.","Beni aramazsa, kızacağım.","doesn’t after if."],
+  ["If you finish your homework, you can watch TV.","Ödevini bitirirsen, televizyon izleyebilirsin.","Result with can."],
+  ["We will have a picnic if it doesn’t rain.","Yağmur yağmazsa, piknik yapacağız.","Negative condition, result first."],
+  ["If you are tired, you should rest.","Yorgunsan, dinlenmelisin.","Result with should (advice)."],
+  ["If I see Ali, I will tell him the news.","Ali’yi görürsem, haberi ona söyleyeceğim.","see (not will see)."],
+  ["If they win the match, they will celebrate.","Maçı kazanırlarsa, kutlama yapacaklar.","Plural subject."],
+  ["If you don’t wear a coat, you will get cold.","Mont giymezsen, üşüyeceksin.","Warning / consequence."]
+];
+
+const EX2 = [
+  ["If I had a lot of money, I would travel the world.","Çok param olsaydı, dünyayı gezerdim.","if + past, would + base."],
+  ["If I were you, I would study medicine.","Senin yerinde olsam, tıp okurdum.","‘were’ for advice."],
+  ["If she lived in London, she would speak English every day.","Londra’da yaşasaydı, her gün İngilizce konuşurdu.","past simple = unreal present."],
+  ["If I won the lottery, I would buy a big house.","Piyangoyu kazansaydım, büyük bir ev alırdım.","Imaginary."],
+  ["If we had a car, we wouldn’t take the bus.","Arabamız olsaydı, otobüse binmezdik.","Negative result: wouldn’t."],
+  ["What would you do if you saw a ghost?","Bir hayalet görsen ne yapardın?","Question form."],
+  ["If I could fly, I would visit every country.","Uçabilseydim, her ülkeyi ziyaret ederdim.","could in if-clause."],
+  ["If he were taller, he would be a good basketball player.","Daha uzun olsaydı, iyi bir basketçi olurdu.","were for all subjects."],
+  ["If I didn’t have to work, I would sleep all day.","Çalışmak zorunda olmasaydım, bütün gün uyurdum.","Negative if-clause."],
+  ["If they spoke slowly, I would understand them.","Yavaş konuşsalardı, onları anlardım.","Unreal present."],
+  ["If I were the president, I would change many things.","Cumhurbaşkanı olsaydım, birçok şeyi değiştirirdim.","Imaginary role."],
+  ["She would be happier if she had more free time.","Daha çok boş vakti olsaydı, daha mutlu olurdu.","Result clause first."],
+  ["If I knew his number, I would call him.","Numarasını bilseydim, onu arardım.","knew (not ‘would know’)."],
+  ["Where would you live if you could choose any city?","Herhangi bir şehri seçebilseydin, nerede yaşardın?","Wh- question + could."],
+  ["If you didn’t eat so much sugar, you would feel better.","Bu kadar çok şeker yemeseydin, kendini daha iyi hissederdin.","Gentle advice."],
+  ["If I had a superpower, I would stop time.","Bir süper gücüm olsaydı, zamanı durdururdum.","Fun / imaginary."],
+  ["We might travel more if we had more money.","Daha çok paramız olsaydı, belki daha çok seyahat ederdik.","might = maybe."],
+  ["If I were rich, I could help many people.","Zengin olsaydım, birçok insana yardım edebilirdim.","could = would be able to."]
+];
+
+// gap-fill items: text uses __ for each blank; answers = array per blank (accepted strings)
+const GAP0 = [
+  ["If you __ (touch) snow, it __ (feel) cold.", [["touch"],["feels"]]],
+  ["Bread __ (go) bad if you __ (not keep) it in the fridge.", [["goes"],["don't keep","do not keep"]]],
+  ["If my brother __ (not wake up) early, he __ (miss) the bus.", [["doesn't wake up","does not wake up"],["misses"]]],
+  ["If you __ (heat) butter, it __ (melt).", [["heat"],["melts"]]],
+  ["Dogs __ (get) happy if you __ (play) with them.", [["get"],["play"]]]
+];
+const GAP1 = [
+  ["If it __ (be) sunny tomorrow, we __ (go) for a walk.", [["is"],["will go","'ll go"]]],
+  ["I __ (not come) to the party if I __ (be) busy.", [["won't come","will not come"],["am"]]],
+  ["If you __ (help) me, I __ (finish) faster.", [["help"],["will finish","'ll finish"]]],
+  ["She __ (call) you if she __ (need) help.", [["will call","'ll call"],["needs"]]],
+  ["If we __ (not leave) now, we __ (be) late.", [["don't leave","do not leave"],["will be","'ll be"]]]
+];
+const GAP2 = [
+  ["If I __ (have) more time, I __ (learn) the guitar.", [["had"],["would learn","'d learn"]]],
+  ["If she __ (be) here, she __ (help) us.", [["were","was"],["would help","'d help"]]],
+  ["If we __ (live) by the sea, we __ (swim) every day.", [["lived"],["would swim","'d swim"]]],
+  ["I __ (travel) more if I __ (not have) so much work.", [["would travel","'d travel"],["didn't have","did not have"]]],
+  ["If I __ (be) you, I __ (not worry) so much.", [["were","was"],["wouldn't worry","would not worry"]]]
+];
+
+// correction / transformation reveal items
+const COR1 = [
+  ["If it will rain, we will cancel the trip.","If it rains, we will cancel the trip.","“if” ten sonra “will” yok."],
+  ["If she will study, she will pass.","If she studies, she will pass.","Şart cümlesi geniş zaman."],
+  ["If you don’t will eat, you will be hungry.","If you don’t eat, you will be hungry.","Olumsuzda da “will” yok."],
+  ["If you press the button, the machine will starts.","If you press the button, the machine starts. / will start.","“will starts” olmaz."]
+];
+const TR12 = [
+  ["If I have money, I will buy a car.","If I had money, I would buy a car.","Gerçek → hayalî (Type 2)."],
+  ["If she studies, she will pass.","If she studied, she would pass.",""],
+  ["If we are free, we will visit you.","If we were free, we would visit you.","were for all subjects."]
+];
+const COR2 = [
+  ["If I would have money, I would travel.","If I had money, I would travel.","“if” ten sonra “would” yok."],
+  ["If I was you, I would say sorry.","If I were you, I would say sorry.","Type 2’de “were”."],
+  ["What would you do if you would win the lottery?","What would you do if you won the lottery?","won, ‘would win’ değil."],
+  ["If I had wings, I would to fly.","If I had wings, I would fly.","“would” + yalın fiil."]
+];
+
+// speaking prompts with model answers
+const SPK1 = [
+  ["Plans","If you have free time this weekend, what will you do?",
+   "If I have free time this weekend, I <b>will meet</b> my friends. If the weather <b>is</b> nice, we <b>will go</b> to the park. If it <b>rains</b>, we <b>will watch</b> a film at home.",
+   ["If I have time, I will…","If it’s sunny, …","If not, I will…"]],
+  ["Tech","If you lose your phone tomorrow, what will you do?",
+   "If I <b>lose</b> my phone, I <b>will tell</b> my family first. If I <b>can’t find</b> it, I <b>will buy</b> a cheap one. I <b>won’t panic</b> if I have my numbers saved.",
+   ["If I lose it, I will…","If I can’t find it, …","I won’t … if …"]],
+  ["Health","What will you do if you feel sick before an exam?",
+   "If I <b>feel</b> sick, I <b>will rest</b> and drink water. If it <b>gets</b> worse, I <b>will see</b> a doctor. If I <b>am</b> still ill, I <b>will ask</b> the teacher for help.",
+   ["If I feel sick, I will…","If it gets worse, …","If I’m still ill, …"]]
+];
+const SPK2 = [
+  ["Money","If you won 10 million lira tomorrow, how would you spend it?",
+   "If I <b>won</b> that money, I <b>would buy</b> a house for my family. I <b>would travel</b> a lot, and I <b>would help</b> people who need it. I <b>wouldn’t stop</b> working, though.",
+   ["If I won…, I would…","I would also…","I wouldn’t…"]],
+  ["Travel","If you could live in any country, where would you live and why?",
+   "If I <b>could</b> live anywhere, I <b>would live</b> in Italy. The food <b>would be</b> amazing, and I <b>could learn</b> a new language. If I <b>spoke</b> Italian, I <b>would make</b> many friends.",
+   ["If I could live anywhere, I would…","It would be… because…","If I spoke…, I would…"]],
+  ["Advice","Your friend is always tired and stressed. If you were them, what would you do?",
+   "If I <b>were</b> them, I <b>would sleep</b> earlier and <b>wouldn’t drink</b> coffee at night. I <b>would do</b> some exercise. If they <b>followed</b> this advice, they <b>would feel</b> better.",
+   ["If I were them, I would…","I wouldn’t…","If they …, they would…"]],
+  ["Dreams","If you had one superpower, which would you choose and how would you use it?",
+   "If I <b>had</b> a superpower, I <b>would choose</b> to fly. I <b>would travel</b> the world for free, and I <b>might help</b> people in danger. Life <b>would be</b> so exciting!",
+   ["If I had a superpower, I would…","I would use it to…","It would be…"]]
+];
+
+const MIS = [
+  ["If it will rain, we will stay home.","If it rains, we will stay home.","“if” ten sonra “will” olmaz."],
+  ["If you heat ice, it will melt every time.","If you heat ice, it melts.","Her zaman doğru → Type 0."],
+  ["If he study, he will pass.","If he studies, he will pass.","3. tekilde fiile -s."],
+  ["If I would win, I would be happy.","If I won, I would be happy.","Type 2: “if” ten sonra geçmiş (won)."],
+  ["If I was you, I would say sorry.","If I were you, I would say sorry.","Type 2’de “were”."],
+  ["If I had money, I would to buy a car.","If I had money, I would buy a car.","“would” + yalın fiil (to yok)."]
+];
+
+/* ===================== ENGINE ===================== */
+const norm = s => (s||"").toLowerCase().trim().replace(/[’`]/g,"'").replace(/\s+/g," ");
+
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+function exBank(title, data){
+  let h=`<div class="hint">👇 Tap a sentence to see the Turkish meaning.</div>`;
+  data.forEach((d,i)=>{
+    h+=`<div class="exrow" onclick="this.classList.toggle('open')">
+      <span class="en">${esc(d[0])}</span>
+      <div class="more"><span class="trm">${esc(d[1])}</span><span class="note">📝 ${esc(d[2])}</span></div>
+    </div>`;
+  });
+  return h;
+}
+
+function gapSet(id, data){
+  let h=`<div class="card"><div id="${id}">`;
+  data.forEach((item,qi)=>{
+    const segs=item[0].split("__");
+    let line="";
+    segs.forEach((seg,si)=>{
+      // colour the verb cue in (...) lightly
+      line+=esc(seg).replace(/\(([^)]+)\)/g,'<span class="cue">($1)</span>');
+      if(si<segs.length-1){ line+=`<input class="blank" data-q="${qi}" data-b="${si}" autocomplete="off" autocapitalize="off" spellcheck="false">`; }
+    });
+    h+=`<div class="q"><div class="qline">${qi+1}. ${line}</div></div>`;
+  });
+  h+=`</div>
+    <button class="btn btn-check" onclick="checkGap('${id}',${JSON.stringify(data).replace(/"/g,'&quot;')||''})">Check</button>
+    <button class="btn btn-show" onclick="showGap('${id}',${JSON.stringify(data).replace(/"/g,'&quot;')})">Show answers</button>
+    <span class="score" id="${id}_score"></span></div>`;
+  return h;
+}
+
+function checkGap(id,data){
+  const box=document.getElementById(id);
+  let right=0,total=0;
+  box.querySelectorAll("input.blank").forEach(inp=>{
+    const qi=+inp.dataset.q, bi=+inp.dataset.b;
+    const acc=data[qi][1][bi].map(norm);
+    total++;
+    if(acc.includes(norm(inp.value))){ inp.classList.add("right");inp.classList.remove("wrong");right++; }
+    else { inp.classList.add("wrong");inp.classList.remove("right"); }
+  });
+  const s=document.getElementById(id+"_score");
+  s.textContent=`${right} / ${total} correct`;
+  s.className="score "+(right===total?"good":"bad");
+}
+function showGap(id,data){
+  const box=document.getElementById(id);
+  box.querySelectorAll("input.blank").forEach(inp=>{
+    const qi=+inp.dataset.q, bi=+inp.dataset.b;
+    inp.value=data[qi][1][bi][0];
+    inp.classList.add("right");inp.classList.remove("wrong");
+  });
+  const s=document.getElementById(id+"_score");
+  s.textContent="Answers shown ✓"; s.className="score good";
+}
+
+function revealSet(title, data, mode){
+  // mode: 'cor' wrong→right ; 'tr' real→imaginary
+  let h=`<div class="card">`;
+  data.forEach((d,i)=>{
+    const promptLabel = mode==='tr' ? 'Real (Type 1):' : 'Find & fix the mistake:';
+    h+=`<div class="q">
+      <div class="qline"><b>${i+1}.</b> <span class="${mode==='cor'?'wrongtxt':''}">${esc(d[0])}</span></div>
+      <button class="btn btn-reveal" onclick="document.getElementById('${title}_${i}').classList.toggle('show')">Show answer</button>
+      <div class="reveal" id="${title}_${i}"><span class="a">✅ ${esc(d[1])}</span>${d[2]?`<span class="trm">TR ▸ ${esc(d[2])}</span>`:''}</div>
+    </div>`;
+  });
+  h+=`</div>`;
+  return h;
+}
+
+function spkSet(data){
+  let h="";
+  data.forEach((d,i)=>{
+    h+=`<div class="spk">
+      <span class="topic">${esc(d[0])}</span>
+      <h4>${esc(d[1])}</h4>
+      <button class="btn btn-show" onclick="document.getElementById('spk_${d[0]}_${i}').classList.toggle('show')">🆘 Show a model answer</button>
+      <div class="reveal" id="spk_${d[0]}_${i}"><span class="a">Model:</span> ${d[2]}
+        <div class="starters">Starters: ${d[3].map(s=>`<i>“${esc(s)}”</i>`).join(' · ')}</div></div>
+    </div>`;
+  });
+  return h;
+}
+
+/* ===================== SECTIONS ===================== */
+const SECTIONS = [
+  { id:"type0", label:"Type 0", build:()=>`
+    <h2 class="sec">Type 0 — Things that are always true 🔁</h2>
+    <p class="lead">Facts, science, rules, and habits. The result is always 100% true.</p>
+    <div class="card">
+      <div class="form-box">
+        <div class="f"><span class="pill">if + present simple</span> , <span class="pill">present simple</span></div>
+        <div class="ex">If you heat ice, it <span class="gword">melts</span>.</div>
+        <div class="ex" style="color:var(--muted)">You can switch the order (no comma): Ice melts if you heat it.</div>
+      </div>
+      <p><b>Meaning.</b> Here <i>if</i> means almost the same as <i>when</i> — it happens every time.</p>
+      <span class="tr">TR ▸ Type 0; her zaman doğru olan gerçekler, kurallar ve alışkanlıklar içindir. “if”, “when (-dığında)” ile aynıdır. Türkçesi: “…-sa/-se …-er”. Örnek: “Buzu ısıtırsan, erir.” <b>İki cümle de geniş zaman.</b> he/she/it ile fiile <b>-s</b> eklemeyi unutma!</span>
+    </div>
+    <h2 class="sec">Examples</h2>
+    <div class="card">${exBank("t0",EX0)}</div>
+    <h2 class="sec">Practice — fill the gaps ✍️</h2>
+    <div class="hint">Both verbs are present simple. Use the word in (brackets). Mind the -s and don’t/doesn’t.</div>
+    ${gapSet("g0",GAP0)}
+  `},
+
+  { id:"type1", label:"Type 1", build:()=>`
+    <h2 class="sec">Type 1 — Real future possibilities 🔮</h2>
+    <p class="lead">Maybe yes, maybe no — a real, possible situation in the future.</p>
+    <div class="card">
+      <div class="form-box">
+        <div class="f"><span class="pill">if + present simple</span> , <span class="pill">will / won’t + base verb</span></div>
+        <div class="ex">If it rains tomorrow, we <span class="gword">will stay</span> at home.</div>
+        <div class="ex" style="color:var(--muted)">Result can also use can / should: If you’re tired, you should rest.</div>
+      </div>
+      <p><b>Meaning.</b> The condition is open (maybe), and the result is a likely consequence.</p>
+      <span class="tr">TR ▸ Type 1; gelecekte gerçekleşmesi <b>mümkün</b> durumlar içindir. Türkçesi: “…-sa/-se, …-ecek”. “Yağmur yağarsa, evde kalacağız.”</span>
+      <div class="warn">
+        <div class="lbl">⚠️ GOLDEN RULE / ALTIN KURAL</div>
+        After <b>if</b> we do NOT use <b>will</b>. The if-part stays present simple.<br>
+        <span class="no">❌ If it will rain, …</span> &nbsp; <span class="ok">✅ If it rains, …</span><br>
+        <span class="tr" style="margin-top:6px">TR ▸ “if” ten sonra <b>will</b> KULLANILMAZ. Türkçede “yağacaksa” der gibi düşünüp “if it will rain” deme.</span>
+      </div>
+    </div>
+    <h2 class="sec">Type 0 vs Type 1</h2>
+    <div class="card"><table class="cmp">
+      <tr><th></th><th>Type 0 (always true)</th><th>Type 1 (real future)</th></tr>
+      <tr><td>if-clause</td><td>present simple</td><td>present simple</td></tr>
+      <tr><td>result</td><td>present simple</td><td>will / won’t + base</td></tr>
+      <tr><td>“if” ≈</td><td>when (her zaman)</td><td>maybe (belki)</td></tr>
+      <tr><td>example</td><td>If you mix red &amp; white, you get pink.</td><td>If you study tonight, you will pass.</td></tr>
+    </table></div>
+    <h2 class="sec">Examples</h2>
+    <div class="card">${exBank("t1",EX1)}</div>
+    <h2 class="sec">Practice — present simple OR will? ✍️</h2>
+    <div class="hint">Remember: no “will” after “if”.</div>
+    ${gapSet("g1",GAP1)}
+    <h2 class="sec">Fix the mistake 🔧</h2>
+    ${revealSet("c1",COR1,'cor')}
+  `},
+
+  { id:"type2", label:"Type 2", build:()=>`
+    <h2 class="sec">Type 2 — Imaginary / unreal situations 💭</h2>
+    <p class="lead">Dreams and “impossible” or unlikely ideas about now or the future.</p>
+    <div class="card">
+      <div class="form-box">
+        <div class="f"><span class="pill">if + past simple</span> , <span class="pill">would / could / might + base</span></div>
+        <div class="ex">If I <span class="gword">had</span> more money, I <span class="gword">would travel</span> the world.</div>
+        <div class="ex" style="color:var(--muted)">Use <b>were</b> for ALL subjects: If I were you / If he were here.</div>
+      </div>
+      <p><b>Meaning.</b> It is <b>not real now</b> — we are imagining. The past tense here means present/future, not past.</p>
+      <span class="tr">TR ▸ Type 2; hayalî, gerçek olmayan, ihtimali düşük durumlar içindir. Türkçesi: “…-saydı/-seydi, …-ardı/-erdi”. “Çok param olsaydı, dünyayı gezerdim.” (ama param yok)</span>
+      <div class="warn">
+        <div class="lbl">⚠️ TWO TRAPS / İKİ TUZAK</div>
+        <span class="no">❌ If I would have money…</span> &nbsp; <span class="ok">✅ If I had money…</span> &nbsp;(no “would” after if)<br>
+        <span class="no">❌ If I was you…</span> &nbsp; <span class="ok">✅ If I were you…</span><br>
+        <span class="tr" style="margin-top:6px">TR ▸ “if” ten sonra geçmiş zaman; sonuçta “would”. Tavsiyede her zaman “If I were you”.</span>
+      </div>
+    </div>
+    <h2 class="sec">would / could / might</h2>
+    <div class="card"><table class="cmp">
+      <tr><th>Word</th><th>Meaning</th><th>Example</th></tr>
+      <tr><td>would</td><td>the imaginary result</td><td>If I had time, I would learn guitar.</td></tr>
+      <tr><td>could</td><td>would be able to</td><td>If I spoke French, I could work in Paris.</td></tr>
+      <tr><td>might</td><td>maybe (not sure)</td><td>If I had money, I might buy a car.</td></tr>
+    </table></div>
+    <h2 class="sec">Type 1 vs Type 2 — real or dream?</h2>
+    <div class="card"><table class="cmp">
+      <tr><th></th><th>Type 1 (real)</th><th>Type 2 (imaginary)</th></tr>
+      <tr><td>if-clause</td><td>present simple</td><td>past simple (were)</td></tr>
+      <tr><td>result</td><td>will + base</td><td>would / could / might + base</td></tr>
+      <tr><td>example</td><td>If I have money, I will buy a car.</td><td>If I had money, I would buy a car.</td></tr>
+      <tr><td>Türkçe</td><td>Param olursa, alacağım.</td><td>Param olsaydı, alırdım.</td></tr>
+    </table></div>
+    <h2 class="sec">Examples</h2>
+    <div class="card">${exBank("t2",EX2)}</div>
+    <h2 class="sec">Practice — would / had / were ✍️</h2>
+    <div class="hint">if + past simple … would + base. Use “were” for all subjects.</div>
+    ${gapSet("g2",GAP2)}
+    <h2 class="sec">Real → Imaginary (rewrite) 🔁</h2>
+    <div class="hint">Change each real Type 1 sentence into an imaginary Type 2. Try first, then check.</div>
+    ${revealSet("t12",TR12,'tr')}
+    <h2 class="sec">Fix the mistake 🔧</h2>
+    ${revealSet("c2",COR2,'cor')}
+  `},
+
+  { id:"speak", label:"🗣️ Speaking", build:()=>`
+    <h2 class="sec">Speaking — say it out loud 🗣️</h2>
+    <p class="lead">Answer each question with full sentences. Give a reason. Try alone first, then tap for a model.</p>
+    <h2 class="sec">Real situations (Type 1)</h2>
+    ${spkSet(SPK1)}
+    <h2 class="sec">Imaginary situations (Type 2)</h2>
+    ${spkSet(SPK2)}
+    <div class="card" style="margin-top:14px">
+      <b>Mini challenge 🎯</b> — “Chain game”: say a Type 1 sentence, then use its result as your next <i>if</i>.
+      <div style="color:var(--muted);margin-top:6px">“If I study tonight, I will pass.” → “If I pass, I will be happy.” → “If I am happy, I will…”</div>
+    </div>
+  `},
+
+  { id:"mistakes", label:"⚠️ Mistakes", build:()=>`
+    <h2 class="sec">Common mistakes — and the fix ⚠️</h2>
+    <p class="lead">These are the errors Turkish learners make most. Learn to spot them!</p>
+    <div class="card"><table class="mis">
+      <tr><th>❌ Wrong</th><th>✅ Correct</th><th>TR ▸ Açıklama</th></tr>
+      ${MIS.map(m=>`<tr><td class="wrongtxt">${esc(m[0])}</td><td class="righttxt">${esc(m[1])}</td><td>${esc(m[2])}</td></tr>`).join("")}
+    </table></div>
+    <div class="card">
+      <b>Quick self-test 🧠</b>
+      <div class="hint" style="margin-top:8px">Correct these in your head, then tap to check.</div>
+      ${revealSet("self",[
+        ["If you will help me, I finish faster.","If you help me, I will finish faster.","if + present; will sonuçta."],
+        ["If I was rich, I will buy a boat.","If I were rich, I would buy a boat.","Type 2: were + would."],
+        ["If she don’t come, I am sad.","If she doesn’t come, I will be sad.","doesn’t + will."]
+      ],'cor')}
+    </div>
+  `}
+];
+
+/* ===================== ROUTER ===================== */
+let current="type0";
+const nav=document.getElementById("nav");
+const app=document.getElementById("app");
+function render(){
+  nav.innerHTML="";
+  SECTIONS.forEach(s=>{
+    const b=document.createElement("button");
+    b.textContent=s.label; b.className=(s.id===current?"active":"");
+    b.onclick=()=>{current=s.id;render();window.scrollTo({top:0,behavior:"smooth"});};
+    nav.appendChild(b);
+  });
+  app.innerHTML=SECTIONS.find(s=>s.id===current).build();
+}
+render();
+</script>
+</body>
+</html>
